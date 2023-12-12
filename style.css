@@ -95,6 +95,18 @@ button:hover {
     display: none;
 }
 
+#resultado1 {
+    display: none;
+}
+
+#flu {
+    display: none;
+}
+
+#man {
+    display: none;
+}
+
 /* .calculadora {
     transition: box-shadow 0.3s ease;
     background-color: rgba(148, 231, 212, 0.488);
