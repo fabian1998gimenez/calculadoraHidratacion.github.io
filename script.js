@@ -2,6 +2,8 @@ let calcular = document.getElementById('calcular');
 const ERROR = document.getElementById('error');
 const FLU = document.getElementById('flu');
 const MAN = document.getElementById('man');
+const resultadoHolliday = document.getElementById('resultadoHolliday');
+const resultadoSuperficie = document.getElementById('resultadoSuperficie');
 
 calcular.addEventListener("click", () => {
     const dato = document.getElementById('peso');
@@ -17,10 +19,15 @@ calcular.addEventListener("click", () => {
             console.log(volumen1, volumen2);
             FLU.style.display = 'block';
             MAN.style.display = 'block';
+            // Para mostrar resultados en el DOM
+            resultadoSuperficie.innerHTML = `Superficie Corporal: ${superficieCorporal(peso).toFixed(2)}`;
+            resultadoHolliday.innerHTML = `Holliday Segar: ${hollidaySegar(peso)}`;
         } else {
             hollidaySegar(peso); 
             FLU.style.display = 'block';
             MAN.style.display = 'block';
+             // PAra mostrar resultados en el DOM
+             resultadoHolliday.innerHTML = `Holliday Segar: ${hollidaySegar(peso)}`;
         }
     } else {
         ERROR.style.display = 'block';
