@@ -1,38 +1,42 @@
 let calcular = document.getElementById('calcular');
+const dato = document.getElementById('peso');
 const ERROR = document.getElementById('error');
-const FLU = document.getElementById('flu');
-const MAN = document.getElementById('man');
 const resultadoHolliday = document.getElementById('resultadoHolliday');
 const resultadoSuperficie = document.getElementById('resultadoSuperficie');
+const resultadoFlujo = document.getElementById('resultadoFlujo');
+
+
+dato.addEventListener("keyup", function (e) {
+    if (e.code === 'Enter') {
+        calcular.click();
+    }
+});
 
 calcular.addEventListener("click", () => {
-    const dato = document.getElementById('peso');
     let peso = dato.value * 1;
-    FLU.style.display = 'none';
-    MAN.style.display = 'none';
+    resultadoFlujo.style.display = 'none';
 
     if (peso > 0) {
         ERROR.style.display = 'none'; 
-        if (peso <= 30) {  
-            let volumen1 = superficieCorporal(peso) * 1500;
-            let volumen2 = superficieCorporal(peso) * 2000;
-            console.log(volumen1, volumen2);
-            FLU.style.display = 'block';
-            MAN.style.display = 'block';
-            // Para mostrar resultados en el DOM
-            resultadoSuperficie.innerHTML = `Superficie Corporal: ${superficieCorporal(peso).toFixed(2)}`;
-            resultadoHolliday.innerHTML = `Holliday Segar: ${hollidaySegar(peso)}`;
-        } else {
+        if (peso <= 30) { 
             hollidaySegar(peso); 
-            FLU.style.display = 'block';
-            MAN.style.display = 'block';
              // PAra mostrar resultados en el DOM
              resultadoHolliday.innerHTML = `Holliday Segar: ${hollidaySegar(peso)}`;
+             resultadoSuperficie.style.display = 'block';
+             resultadoFlujo.innerHTML = `Flujo: ${calcFlujo(peso)}`; 
+        } else {
+            let volumen1 = superficieCorporal(peso) * 1500;
+            let volumen2 = superficieCorporal(peso) * 2000;
+            /* console.log(volumen1, volumen2); */
+            resultadoFlujo.style.display = 'block';
+            resultadoHolliday.style.display = 'none';
+            // Para mostrar resultados en el DOM
+            resultadoSuperficie.innerHTML = `Superficie Corporal (volumen1): ${volumen1.toFixed(2)}<br>Superficie Corporal (volumen2): ${volumen2.toFixed(2)}`;   
+            resultadoFlujo.innerHTML = `Flujo: ${calcFlujo(peso)}`;
         }
     } else {
         ERROR.style.display = 'block';
-        FLU.style.display = 'none';
-        MAN.style.display = 'none';
+        resultadoFlujo.style.display = 'none';
     }
 });
 

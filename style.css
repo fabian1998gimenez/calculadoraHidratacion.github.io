@@ -95,13 +95,11 @@ button:hover {
     display: none;
 }
 
-#flu {
+#resultadoFlujo {
     display: none;
 }
 
-#man {
-    display: none;
-}
+
 
 /* .calculadora {
     transition: box-shadow 0.3s ease;
